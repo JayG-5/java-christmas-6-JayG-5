@@ -48,13 +48,36 @@
       * 5천 원 이상: 별
       * 1만 원 이상: 트리
       * 2만 원 이상: 산타
+* 객체
+  * 주문
+    * 메뉴: List<메뉴>
+    * 할인: List<할인>
+      * 크리스마스 디데이
+      * 특별
+      * 증정
+    * 정보: Map<String,Objects>
+    * 메소드:
+      * getInfo(): 정보 getter -> Map<String,Objects>
+  * 메뉴
+    * 이름: <String>
+    * 가격: <int>
+    * 개수: <int>
+    * 할인: <할인>
+    * 메소드
+      * getInfo(): 이름, 개수 getter -> Map<String,Objects>
+      * getPrice(): 가격 getter -> int
+      * getDiscount(): 할인.getBenefit(날자,이름,개수) -> int 
+  * 할인
+    * 금액 -> int
+    * 할인 타입 -> int
 * enum
   * 설정
     * nn월
     * 캘린더 별
   * 할인
+    * 타입
     * 조건
-    * 혜택
+    * 금액
   * 메뉴
     * 이름
     * 금액
@@ -62,8 +85,6 @@
   * 출력 메세지
   * 에러 메세지
 * 테스트
-  * 예외 처리
-
 ---
 
 ## ✏️ 과제 진행 요구 사항

@@ -1,7 +1,12 @@
 package christmas.view;
 
 public class OutputView {
-    public void printMenu() {
-        System.out.println("<주문 메뉴>");
+
+    public static void newLine() {
+        System.out.println();
+    }
+
+    public static void print(String text) {
+        System.out.println(text);
     }
 }

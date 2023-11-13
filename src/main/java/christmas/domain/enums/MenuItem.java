@@ -1,5 +1,8 @@
 package christmas.domain.enums;
 
+import christmas.exception.Message;
+import christmas.exception.PromotionException;
+
 import java.util.Arrays;
 
 public enum MenuItem {
@@ -50,8 +53,7 @@ public enum MenuItem {
                 return item.getPrice();
             }
         }
-        //예외 처리
-        return -1;
+        throw PromotionException.of(Message.ORDER);
     }
 
     public static int getCategoryByName(String name) {
@@ -60,7 +62,6 @@ public enum MenuItem {
                 return item.getCategory();
             }
         }
-        //예외 처리
-        return -1;
+        throw PromotionException.of(Message.ORDER);
     }
 }

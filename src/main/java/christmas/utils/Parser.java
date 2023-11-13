@@ -1,10 +1,13 @@
 package christmas.utils;
 
+import christmas.exception.Message;
+import christmas.exception.PromotionException;
+
 public class Parser {
 
     private static void validateWhiteSpace(String text){
         if (text.chars().anyMatch(Character::isWhitespace)){
-            //예외 처리
+            throw PromotionException.of(Message.INPUT);
         }
     }
     public static int stringToInt(String text){
@@ -12,7 +15,7 @@ public class Parser {
             validateWhiteSpace(text);
             return Integer.parseInt(text);
         }catch (NumberFormatException e){
-            //예외 처리
+            throw PromotionException.of(Message.NUMBER);
         }
     }
 }

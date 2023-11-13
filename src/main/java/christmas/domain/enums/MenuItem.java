@@ -1,5 +1,7 @@
 package christmas.domain.enums;
 
+import java.util.Arrays;
+
 public enum MenuItem {
     // 애피타이저
     YANGSONGHI_SOUP("양송이수프", 6000, Category.APPETIZER.getType()),
@@ -29,5 +31,36 @@ public enum MenuItem {
         this.name = name;
         this.price = price;
         this.category = category;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+    public static int getPriceByName(String name) {
+        for (MenuItem item : MenuItem.values()) {
+            if (item.getName().equals(name)) {
+                return item.getPrice();
+            }
+        }
+        //예외 처리
+        return -1;
+    }
+
+    public static int getCategoryByName(String name) {
+        for (MenuItem item : MenuItem.values()) {
+            if (item.getName().equals(name)) {
+                return item.getCategory();
+            }
+        }
+        //예외 처리
+        return -1;
     }
 }

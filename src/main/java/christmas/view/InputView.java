@@ -9,4 +9,10 @@ public class InputView {
         String input = Console.readLine();
         return Parser.stringToInt(input);
     }
+
+    public  String readMenu(){
+        OutputView.print(Message.REQUEST_MENU.getMessage());
+        String input = Console.readLine();
+        return input;
+    }
 }

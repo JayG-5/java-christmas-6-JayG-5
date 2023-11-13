@@ -21,4 +21,8 @@ public enum Message {
     public String getMessage() {
         return content;
     }
+
+    public String getMessage(Object... args) {
+        return String.format(content, args);
+    }
 }

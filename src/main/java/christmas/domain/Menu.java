@@ -20,6 +20,22 @@ public class Menu {
 
         this.price = MenuItem.getPriceByName(name);
         this.category = MenuItem.getCategoryByName(name);
-        this.benefits = Benefit.getMenuBenefit(date,category,unit);
+        this.benefits = Benefit.getMenuBenefit(date, category, unit);
+    }
+
+    public String getOrder() {
+        return String.format("%s %d개", name, unit);
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public List<BenefitType> getBenefits() {
+        return benefits;
     }
 }

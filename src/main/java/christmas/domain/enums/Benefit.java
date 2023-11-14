@@ -39,4 +39,18 @@ public enum Benefit {
         }
         return benefits;
     }
+
+    public static List<BenefitType> getPromotionBenefit(List<Integer> stars,int date) {
+        List<BenefitType> benefits = new ArrayList<BenefitType>();
+        if (date>=Calendar.CHRISTMAS_EVENT_START.getValue()
+                && date<= Calendar.CHRISTMAS_EVENT_END.getValue()){
+            for (int i = 0; i <= date+10; i++) {
+                benefits.add(CHRISTMAS.benefit);
+            }
+        }
+        if (stars.contains(date)){
+            benefits.add(SPACIAL.benefit);
+        }
+        return benefits;
+    }
 }

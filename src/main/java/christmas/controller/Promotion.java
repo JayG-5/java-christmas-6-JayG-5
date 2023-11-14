@@ -12,8 +12,6 @@ import java.util.Objects;
 public class Promotion {
 
     private final List<Integer> stars;
-    //    private int date;
-//    private List<Menu> menus;
 //    private List<BenefitType> benefits;
     private Map<String, Objects> result;
 
@@ -29,6 +27,7 @@ public class Promotion {
     public void order() {
         final int date = InputView.readDate();
         final List<Menu> menus = InputView.readMenu().stream().map(menuText -> createMenu(date, menuText)).toList();
+        menus.stream().mapToInt(Menu::getPrice).sum();
 
 
     }

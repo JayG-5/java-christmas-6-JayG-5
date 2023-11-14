@@ -6,5 +6,9 @@ public abstract class BenefitType {
     public BenefitType(int value) {
         this.value = value;
     }
+
+    public int getValue() {
+        return value;
+    }
 }
 

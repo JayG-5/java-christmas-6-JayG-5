@@ -41,10 +41,11 @@ public enum Benefit {
     }
 
     public static List<BenefitType> getPromotionBenefit(List<Integer> stars,int date) {
+        final int defaultChristmasBenefit = 10;
         List<BenefitType> benefits = new ArrayList<BenefitType>();
         if (date>=Calendar.CHRISTMAS_EVENT_START.getValue()
                 && date<= Calendar.CHRISTMAS_EVENT_END.getValue()){
-            for (int i = 0; i <= date+10; i++) {
+            for (int i = 0; i <= date+defaultChristmasBenefit; i++) {
                 benefits.add(CHRISTMAS.benefit);
             }
         }

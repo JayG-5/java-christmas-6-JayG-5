@@ -8,7 +8,7 @@ public class ChristmasBenefit extends BenefitType {
         super(value);
     }
 
-    public static ChristmasBenefit getInstance() {
-        return new ChristmasBenefit(Benefit.CHRISTMAS.getValue());
+    public static ChristmasBenefit getInstance(int score) {
+        return new ChristmasBenefit(Benefit.CHRISTMAS.getValue()*score);
     }
 }

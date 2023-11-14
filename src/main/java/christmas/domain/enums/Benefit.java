@@ -1,6 +1,10 @@
 package christmas.domain.enums;
 
 import christmas.domain.benefit.*;
+import christmas.utils.DateChecker;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public enum Benefit {
@@ -18,5 +22,21 @@ public enum Benefit {
 
     public int getValue() {
         return value;
+    }
+
+    public static List<BenefitType> getMenuBenefit(int month, int date, int category, int unit) {
+        final boolean isWeekend = DateChecker.isWeekend(2023,month,date);
+        List<BenefitType> benefits = new ArrayList<BenefitType>();
+        if(isWeekend && category == Category.MAIN.getType()){
+            for (int i = 0; i <unit ; i++) {
+                benefits.add(WEEKEND.benefit);
+            }
+        }
+        if(!isWeekend && category == Category.DESSERT.getType()){
+            for (int i = 0; i <unit ; i++) {
+                benefits.add(WEEKDAY.benefit);
+            }
+        }
+        return benefits;
     }
 }

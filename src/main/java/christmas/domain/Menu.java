@@ -3,6 +3,7 @@ package christmas.domain;
 import christmas.domain.benefit.BenefitType;
 import christmas.domain.enums.Benefit;
 import christmas.domain.enums.MenuItem;
+import christmas.view.OutputView;
 
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class Menu {
         this.benefits = Benefit.getMenuBenefit(date, category, unit);
     }
 
-    public String getOrder() {
-        return String.format("%s %d개", name, unit);
+    public void printOrder() {
+        OutputView.print(String.format("%s %d개", name, unit));
     }
 
     public int getPrice() {

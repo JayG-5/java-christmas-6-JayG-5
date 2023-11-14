@@ -1,9 +1,6 @@
 package christmas.domain.benefit;
 
 import christmas.domain.Menu;
-import christmas.domain.enums.Benefit;
-import christmas.exception.Message;
-import christmas.exception.PromotionException;
 
 public class GiftBenefit extends BenefitType {
 

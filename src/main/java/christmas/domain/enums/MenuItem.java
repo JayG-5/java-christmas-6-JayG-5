@@ -1,5 +1,6 @@
 package christmas.domain.enums;
 
+import christmas.domain.Menu;
 import christmas.exception.Message;
 import christmas.exception.PromotionException;
 
@@ -36,6 +37,10 @@ public enum MenuItem {
         this.category = category;
     }
 
+    public Menu getMenu(int unit) {
+        return new Menu(0, name, unit);
+    }
+
     public String getName() {
         return name;
     }
@@ -47,6 +52,7 @@ public enum MenuItem {
     public int getCategory() {
         return category;
     }
+
     public static int getPriceByName(String name) {
         for (MenuItem item : MenuItem.values()) {
             if (item.getName().equals(name)) {

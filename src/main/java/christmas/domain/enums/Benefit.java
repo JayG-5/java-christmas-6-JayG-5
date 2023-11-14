@@ -8,14 +8,16 @@ import java.util.List;
 
 
 public enum Benefit {
-    CHRISTMAS(ChristmasBenefit.getInstance(),100),
-    WEEKDAY(WeekdayBenefit.getInstance(),2023),
-    WEEKEND(WeekendBenefit.getInstance(),2023),
-    SPACIAL(SpacialBenefit.getInstance(),1000);
+    CHRISTMAS(ChristmasBenefit.getInstance(), 100),
+    WEEKDAY(WeekdayBenefit.getInstance(), 2023),
+    WEEKEND(WeekendBenefit.getInstance(), 2023),
+    SPACIAL(SpacialBenefit.getInstance(), 1000),
+    GIFT(GiftBenefit.of(MenuItem.CHAMPAGNE.getMenu(1)), MenuItem.CHAMPAGNE.getPrice());
 
     private final BenefitType benefit;
     private final int value;
-    Benefit(BenefitType benefit,int value) {
+
+    Benefit(BenefitType benefit, int value) {
         this.benefit = benefit;
         this.value = value;
     }
@@ -30,29 +32,29 @@ public enum Benefit {
                 Calendar.PROMOTION_MONTH.getValue(),
                 date);
         List<BenefitType> benefits = new ArrayList<BenefitType>();
-        if(isWeekend && category == Category.MAIN.getType()){
-            for (int i = 0; i <unit ; i++) {
+        if (isWeekend && category == Category.MAIN.getType()) {
+            for (int i = 0; i < unit; i++) {
                 benefits.add(WEEKEND.benefit);
             }
         }
-        if(!isWeekend && category == Category.DESSERT.getType()){
-            for (int i = 0; i <unit ; i++) {
+        if (!isWeekend && category == Category.DESSERT.getType()) {
+            for (int i = 0; i < unit; i++) {
                 benefits.add(WEEKDAY.benefit);
             }
         }
         return benefits;
     }
 
-    public static List<BenefitType> getPromotionBenefit(List<Integer> stars,int date) {
+    public static List<BenefitType> getPromotionBenefit(List<Integer> stars, int date) {
         final int defaultChristmasBenefit = 10;
         List<BenefitType> benefits = new ArrayList<BenefitType>();
-        if (date>=Calendar.CHRISTMAS_EVENT_START.getValue()
-                && date<= Calendar.CHRISTMAS_EVENT_END.getValue()){
-            for (int i = 0; i <= date+defaultChristmasBenefit; i++) {
+        if (date >= Calendar.CHRISTMAS_EVENT_START.getValue()
+                && date <= Calendar.CHRISTMAS_EVENT_END.getValue()) {
+            for (int i = 0; i <= date + defaultChristmasBenefit; i++) {
                 benefits.add(CHRISTMAS.benefit);
             }
         }
-        if (stars.contains(date)){
+        if (stars.contains(date)) {
             benefits.add(SPACIAL.benefit);
         }
         return benefits;

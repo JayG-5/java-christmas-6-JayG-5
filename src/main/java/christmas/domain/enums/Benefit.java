@@ -24,8 +24,11 @@ public enum Benefit {
         return value;
     }
 
-    public static List<BenefitType> getMenuBenefit(int month, int date, int category, int unit) {
-        final boolean isWeekend = DateChecker.isWeekend(2023,month,date);
+    public static List<BenefitType> getMenuBenefit(int date, int category, int unit) {
+        final boolean isWeekend = DateChecker.isWeekend(
+                Calendar.PROMOTION_YEAR.getValue(),
+                Calendar.PROMOTION_MONTH.getValue(),
+                date);
         List<BenefitType> benefits = new ArrayList<BenefitType>();
         if(isWeekend && category == Category.MAIN.getType()){
             for (int i = 0; i <unit ; i++) {

@@ -8,6 +8,6 @@ public class SpacialBenefit extends BenefitType {
     }
 
     public static SpacialBenefit of() {
-        return new SpacialBenefit(Benefit.CHRISTMAS.getName(),Benefit.CHRISTMAS.getValue());
+        return new SpacialBenefit(Benefit.SPACIAL.getName(),Benefit.SPACIAL.getValue());
     }
 }

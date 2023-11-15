@@ -8,6 +8,6 @@ public class WeekdayBenefit extends BenefitType {
     }
 
     public static WeekdayBenefit of() {
-        return new WeekdayBenefit(Benefit.CHRISTMAS.getName(),Benefit.CHRISTMAS.getValue());
+        return new WeekdayBenefit(Benefit.WEEKDAY.getName(),Benefit.WEEKDAY.getValue());
     }
 }

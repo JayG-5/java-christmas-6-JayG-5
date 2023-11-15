@@ -24,8 +24,7 @@ public class Promotion {
         return new Menu(date, order.get(0), Parser.stringToInt(order.get(1)));
     }
 
-    private Map<String, Object> preprocessBenefitInfo(
-            Map<Class<? extends BenefitType>, Map<String, Object>> benefitInfo) {
+    private Map<String, Object> preprocessBenefitInfo(Map<Class<? extends BenefitType>, Map<String, Object>> benefitInfo){
         Map<String, Object> benefitInfoMap = new HashMap<>();
         Map<String, Object> totalBenefit = new HashMap<>();
         benefitInfo.forEach((k, benefit) -> {
@@ -33,7 +32,10 @@ public class Promotion {
             if (benefit.containsKey("gift")) benefitInfoMap.put("gift", benefit.get("gift"));
         });
         final int totalBenefitValue =  totalBenefit.values().stream().mapToInt(value -> (int) value).sum();
+        final int totalDiscountValue = totalBenefit.entrySet().stream()
+                .filter(entry -> !entry.getKey().equals("증정 이벤트")).mapToInt(entry -> (int) entry.getValue()).sum();
         benefitInfoMap.put("total_benefit_value",totalBenefitValue);
+        benefitInfoMap.put("total_discount_value",totalDiscountValue);
         benefitInfoMap.put("total_benefit", totalBenefit);
         benefitInfoMap.put("badge", Badge.fromPrice(totalBenefitValue));
         return benefitInfoMap;

@@ -38,7 +38,7 @@ public enum MenuItem {
     }
 
     public Menu getMenu(int unit) {
-        return new Menu(0, name, unit);
+        return new Menu(1, name, unit);
     }
 
     public String getName() {

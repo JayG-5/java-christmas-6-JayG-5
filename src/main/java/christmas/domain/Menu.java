@@ -29,7 +29,7 @@ public class Menu {
     }
 
     public int getPrice() {
-        return price;
+        return price * unit;
     }
 
     public int getCategory() {

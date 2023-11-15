@@ -3,12 +3,11 @@ package christmas.domain.benefit;
 import christmas.domain.enums.Benefit;
 
 public class WeekdayBenefit extends BenefitType {
-
-    public WeekdayBenefit(int value) {
-        super(value);
+    public WeekdayBenefit(String name,int value) {
+        super(name,value);
     }
 
-    public static WeekdayBenefit getInstance() {
-        return new WeekdayBenefit(Benefit.WEEKDAY.getValue());
+    public static WeekdayBenefit of() {
+        return new WeekdayBenefit(Benefit.CHRISTMAS.getName(),Benefit.CHRISTMAS.getValue());
     }
 }

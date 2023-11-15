@@ -23,16 +23,16 @@ public enum Badge {
     public String getName() {
         return name;
     }
-    public static Badge fromPrice(int amount) {
+    public static String fromPrice(int amount) {
 
         Badge[] badges = Badge.values();
         Arrays.sort(badges, Collections.reverseOrder());
 
         for (Badge badge : badges) {
             if (amount >= badge.price) {
-                return badge;
+                return badge.name;
             }
         }
-        return null;
+        return "없음";
     }
 }

@@ -14,7 +14,8 @@ public enum Message {
     TITLE_BENEFIT("<혜택 내역>"),
     TITLE_BENEFIT_DISCOUNT("<총혜택 금액>"),
     TITLE_PAYMENT("<할인 후 예상 결제 금액>"),
-    TITLE_BADGE(String.format("<%d월 이벤트 배지>",Calendar.PROMOTION_MONTH.getValue()));
+    TITLE_BADGE(String.format("<%d월 이벤트 배지>",Calendar.PROMOTION_MONTH.getValue())),
+    KRW_FORMATTER("%,d원");
 
     private final String content;
 

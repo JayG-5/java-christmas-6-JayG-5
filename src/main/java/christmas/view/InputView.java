@@ -2,6 +2,7 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.exception.PromotionException;
+import christmas.utils.Checker;
 import christmas.utils.Parser;
 
 import java.util.List;
@@ -9,7 +10,11 @@ import java.util.function.Function;
 
 public class InputView {
     public static int readDate() {
-        return inputHandler(Message.REQUEST_DATE, Parser::stringToInt);
+        return inputHandler(Message.REQUEST_MENU, input -> {
+            int date =Parser.stringToInt(input);
+            Checker.isBetween1And31(date);
+            return date;
+        });
     }
 
     public static List<String> readMenu(){

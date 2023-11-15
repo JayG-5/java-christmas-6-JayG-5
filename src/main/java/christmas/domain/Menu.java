@@ -32,6 +32,10 @@ public class Menu {
         return price * unit;
     }
 
+    public int getUnit() {
+        return unit;
+    }
+
     public int getCategory() {
         return category;
     }

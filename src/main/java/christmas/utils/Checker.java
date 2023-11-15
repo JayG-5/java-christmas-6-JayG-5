@@ -15,8 +15,13 @@ public class Checker {
             throw PromotionException.of(Message.NUMBER);
         }
     }
-    public static void isOverMinimumPrice(List<Menu> menus) {
-        if (menus.stream().mapToInt(Menu::getPrice).sum() < 10000) {
+    public static void isOverMinimumPrice(List<Menu> menus, int minimum) {
+        if (menus.stream().mapToInt(Menu::getPrice).sum() < minimum) {
+            throw PromotionException.of(Message.ORDER);
+        }
+    }
+    public static void isOverMenuSize(List<Menu> menus, int size) {
+        if (menus.stream().mapToInt(Menu::getUnit).sum() > size) {
             throw PromotionException.of(Message.ORDER);
         }
     }

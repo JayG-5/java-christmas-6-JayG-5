@@ -1,6 +1,9 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.controller.Promotion;
+import christmas.domain.Menu;
+import christmas.domain.enums.Category;
 import christmas.exception.PromotionException;
 import christmas.utils.Checker;
 import christmas.utils.Parser;
@@ -17,9 +20,15 @@ public class InputView {
         });
     }
 
-    public static List<String> readMenu(){
+    public static List<Menu> readMenu(int date){
         return inputHandler(Message.REQUEST_MENU, input -> {
-            return Parser.splitToList(input,",");
+            final List<String> orders = Parser.splitToList(input,",");
+            Checker.isUniqueOrder(orders);
+            final List<Menu> menus = orders.stream().map(menuText -> Promotion.createMenu(date, menuText)).toList();
+            Checker.isOverMinimumPrice(menus,10000);
+            Checker.isOverMenuSize(menus,20);
+            Checker.isOnlyCategory(menus, Category.BEVERAGE.getType());
+            return menus;
         });
     }
 

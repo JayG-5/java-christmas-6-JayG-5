@@ -19,7 +19,7 @@ public class Promotion {
         this.stars = stars;
     }
 
-    private Menu createMenu(int date, String orderText) {
+    public static Menu createMenu(int date, String orderText) {
         final List<String> order = Parser.splitToList(orderText, "-");
         return new Menu(date, order.get(0), Parser.stringToInt(order.get(1)));
     }
@@ -43,7 +43,7 @@ public class Promotion {
 
     public void order() {
         final int date = InputView.readDate();
-        final List<Menu> menus = InputView.readMenu().stream().map(menuText -> createMenu(date, menuText)).toList();
+        final List<Menu> menus = InputView.readMenu(date);
         final int totalPrice = menus.stream().mapToInt(Menu::getPrice).sum();
         List<BenefitType> benefits = Benefit.getPromotionBenefit(stars, date, totalPrice);
         menus.forEach(menu -> benefits.addAll(menu.getBenefits()));

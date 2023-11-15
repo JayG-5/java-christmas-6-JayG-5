@@ -25,7 +25,7 @@ public class PromotionTest {
     @DisplayName("메뉴 오류 검사")
     void testCreateMenuWithInvalidInput() {
         int date = 25;
-        String orderText = "타타타타파스-1"; // 잘못된 입력
+        String orderText = "타타타타파스-1";
         assertThrows(PromotionException.class, () -> Promotion.createMenu(date, orderText));
     }
 }

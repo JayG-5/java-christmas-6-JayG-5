@@ -1,5 +1,8 @@
 package christmas.domain.enums;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public enum Badge {
     STAR("벌",5000),
     TREE("트리",10000),
@@ -21,9 +24,13 @@ public enum Badge {
         return name;
     }
     public static Badge fromPrice(int amount) {
-        for (Badge badgeEnum : Badge.values()) {
-            if (amount >= badgeEnum.price) {
-                return badgeEnum;
+
+        Badge[] badges = Badge.values();
+        Arrays.sort(badges, Collections.reverseOrder());
+
+        for (Badge badge : badges) {
+            if (amount >= badge.price) {
+                return badge;
             }
         }
         return null;

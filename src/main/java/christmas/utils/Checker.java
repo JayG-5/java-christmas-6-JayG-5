@@ -1,7 +1,6 @@
 package christmas.utils;
 
 import christmas.domain.Menu;
-import christmas.domain.enums.Category;
 import christmas.exception.Message;
 import christmas.exception.PromotionException;
 
@@ -17,6 +16,15 @@ public class Checker {
     }
     public static void isOverMinimumPrice(List<Menu> menus, int minimum) {
         if (menus.stream().mapToInt(Menu::getPrice).sum() < minimum) {
+            throw PromotionException.of(Message.ORDER);
+        }
+    }
+    public static void isUniqueOrder(List<String> orders) {
+        Set<String> uniqueMenus = orders
+                .stream()
+                .map(order->Parser.splitToList(order,"-").get(0))
+                .collect(Collectors.toSet());
+        if(orders.size() != uniqueMenus.size()){
             throw PromotionException.of(Message.ORDER);
         }
     }

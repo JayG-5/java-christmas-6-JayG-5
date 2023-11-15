@@ -6,6 +6,7 @@ import christmas.domain.enums.Badge;
 import christmas.domain.enums.Benefit;
 import christmas.exception.Message;
 import christmas.exception.PromotionException;
+import christmas.utils.Checker;
 import christmas.utils.Parser;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -25,7 +26,7 @@ public class Promotion {
         try{
             final List<String> order = Parser.splitToList(orderText, "-");
             return new Menu(date, order.get(0), Parser.stringToInt(order.get(1)));
-        }catch (ArrayIndexOutOfBoundsException e){
+        }catch (ArrayIndexOutOfBoundsException | NumberFormatException e){
             throw PromotionException.of(Message.ORDER);
         }
     }
@@ -47,13 +48,20 @@ public class Promotion {
         return benefitInfoMap;
     }
 
+    private Map<String,Object> getBenefitInfo(List<BenefitType> benefits,List<Menu> menus){
+        if(Checker.isOverMinimumPrice(menus,10000)){
+            return preprocessBenefitInfo(Benefit.getBenefitInfo(benefits));
+        }
+        return preprocessBenefitInfo(Benefit.getBenefitInfo(new ArrayList<>()));
+    }
+
     public void order() {
         final int date = InputView.readDate();
         final List<Menu> menus = InputView.readMenu(date);
         final int totalPrice = menus.stream().mapToInt(Menu::getPrice).sum();
         List<BenefitType> benefits = Benefit.getPromotionBenefit(stars, date, totalPrice);
         menus.forEach(menu -> benefits.addAll(menu.getBenefits()));
-        Map<String, Object> benefitInfo = preprocessBenefitInfo(Benefit.getBenefitInfo(benefits));
+        Map<String, Object> benefitInfo = getBenefitInfo(benefits,menus);
         benefitInfo.put("menus",menus);
         benefitInfo.put("total_price",totalPrice);
         OutputView.printResult(date,benefitInfo);

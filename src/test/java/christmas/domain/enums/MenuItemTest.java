@@ -31,7 +31,7 @@ public class MenuItemTest {
     }
 
     @Test
-    @DisplayName("메뉴 카테고리 검사 예외처리 ")
+    @DisplayName("메뉴 카테고리 검사 예외처리")
     void testGetCategoryByNameWithInvalidName() {
         assertThrows(PromotionException.class, () -> MenuItem.getCategoryByName("InvalidMenuName"));
     }

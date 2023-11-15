@@ -6,6 +6,7 @@ import christmas.domain.enums.Badge;
 import christmas.domain.enums.Benefit;
 import christmas.utils.Parser;
 import christmas.view.InputView;
+import christmas.view.OutputView;
 
 import java.util.*;
 
@@ -47,5 +48,6 @@ public class Promotion {
         Map<String, Object> benefitInfo = preprocessBenefitInfo(Benefit.getBenefitInfo(benefits));
         benefitInfo.put("menus",menus);
         benefitInfo.put("total_price",totalPrice);
+        OutputView.printResult(date,benefitInfo);
     }
 }

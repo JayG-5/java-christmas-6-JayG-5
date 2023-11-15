@@ -1,20 +1,33 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.exception.PromotionException;
 import christmas.utils.Parser;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class InputView {
     public static int readDate() {
-        OutputView.print(Message.REQUEST_DATE.getMessage());
-        String input = Console.readLine();
-        return Parser.stringToInt(input);
+        return inputHandler(Message.REQUEST_DATE, Parser::stringToInt);
     }
 
     public static List<String> readMenu(){
-        OutputView.print(Message.REQUEST_MENU.getMessage());
-        String input = Console.readLine();
-        return Parser.splitToList(input,",");
+        return inputHandler(Message.REQUEST_MENU, input -> {
+            return Parser.splitToList(input,",");
+        });
+    }
+
+
+    private static <T> T inputHandler(Message message, Function<String, T> func) {
+        while (true) {
+            try {
+
+                OutputView.print(message.getMessage());
+                final String input = Console.readLine();
+                return func.apply(input);
+            } catch (PromotionException ignored) {
+            }
+        }
     }
 }

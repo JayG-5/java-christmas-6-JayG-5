@@ -4,6 +4,8 @@ import christmas.domain.Menu;
 import christmas.domain.benefit.BenefitType;
 import christmas.domain.enums.Badge;
 import christmas.domain.enums.Benefit;
+import christmas.exception.Message;
+import christmas.exception.PromotionException;
 import christmas.utils.Parser;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -20,8 +22,12 @@ public class Promotion {
     }
 
     public static Menu createMenu(int date, String orderText) {
-        final List<String> order = Parser.splitToList(orderText, "-");
-        return new Menu(date, order.get(0), Parser.stringToInt(order.get(1)));
+        try{
+            final List<String> order = Parser.splitToList(orderText, "-");
+            return new Menu(date, order.get(0), Parser.stringToInt(order.get(1)));
+        }catch (ArrayIndexOutOfBoundsException e){
+            throw PromotionException.of(Message.ORDER);
+        }
     }
 
     private Map<String, Object> preprocessBenefitInfo(Map<Class<? extends BenefitType>, Map<String, Object>> benefitInfo){

@@ -13,7 +13,7 @@ import java.util.function.Function;
 
 public class InputView {
     public static int readDate() {
-        return inputHandler(Message.REQUEST_MENU, input -> {
+        return inputHandler(Message.REQUEST_DATE, input -> {
             int date =Parser.stringToInt(input);
             Checker.isBetween1And31(date);
             return date;
@@ -36,7 +36,6 @@ public class InputView {
     private static <T> T inputHandler(Message message, Function<String, T> func) {
         while (true) {
             try {
-
                 OutputView.print(message.getMessage());
                 final String input = Console.readLine();
                 return func.apply(input);

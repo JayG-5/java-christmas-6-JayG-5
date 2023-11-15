@@ -2,6 +2,7 @@ package christmas.domain.enums;
 
 import christmas.domain.Menu;
 import christmas.domain.benefit.*;
+import christmas.utils.Checker;
 import christmas.utils.DateChecker;
 
 import java.util.*;

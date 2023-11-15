@@ -14,19 +14,22 @@ import java.util.function.Function;
 public class InputView {
     public static int readDate() {
         return inputHandler(Message.REQUEST_DATE, input -> {
-            int date =Parser.stringToInt(input);
-            Checker.isBetween1And31(date);
-            return date;
+            try {
+                int date = Parser.stringToInt(input);
+                Checker.isBetween1And31(date);
+                return date;
+            } catch (NumberFormatException e) {
+                throw PromotionException.of(christmas.exception.Message.NUMBER);
+            }
         });
     }
 
-    public static List<Menu> readMenu(int date){
+    public static List<Menu> readMenu(int date) {
         return inputHandler(Message.REQUEST_MENU, input -> {
-            final List<String> orders = Parser.splitToList(input,",");
+            final List<String> orders = Parser.splitToList(input, ",");
             Checker.isUniqueOrder(orders);
             final List<Menu> menus = orders.stream().map(menuText -> Promotion.createMenu(date, menuText)).toList();
-            Checker.isOverMinimumPrice(menus,10000);
-            Checker.isOverMenuSize(menus,20);
+            Checker.isOverMenuSize(menus, 20);
             Checker.isOnlyCategory(menus, Category.BEVERAGE.getType());
             return menus;
         });

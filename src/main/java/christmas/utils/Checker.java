@@ -14,10 +14,8 @@ public class Checker {
             throw PromotionException.of(Message.NUMBER);
         }
     }
-    public static void isOverMinimumPrice(List<Menu> menus, int minimum) {
-        if (menus.stream().mapToInt(Menu::getPrice).sum() < minimum) {
-            throw PromotionException.of(Message.ORDER);
-        }
+    public static boolean isOverMinimumPrice(List<Menu> menus, int minimum) {
+        return menus.stream().mapToInt(Menu::getPrice).sum() >= minimum;
     }
     public static void isUniqueOrder(List<String> orders) {
         Set<String> uniqueMenus = orders

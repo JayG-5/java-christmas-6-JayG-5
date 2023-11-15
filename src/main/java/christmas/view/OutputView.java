@@ -1,6 +1,7 @@
 package christmas.view;
 
 import christmas.domain.Menu;
+import christmas.domain.benefit.BenefitType;
 import christmas.domain.enums.Calendar;
 
 import java.util.List;
@@ -38,8 +39,12 @@ public class OutputView {
     private static void printBenefitList(Map<String, Object> benefitInfo) {
         newLine();
         print(Message.TITLE_BENEFIT.getMessage());
-        ((Map<String, Integer>) benefitInfo.get("total_benefit")).forEach((key, value)
-                -> print(String.format("%s: -%s", key, Message.KRW_FORMATTER.getMessage(value))));
+        Map<String, Integer> benefits = (Map<String, Integer>) benefitInfo.get("total_benefit");
+        if(benefits.isEmpty()){
+            print("없음");
+        }
+        benefits.forEach((key, value)
+                -> print(String.format("%s: %s", key, Message.KRW_FORMATTER.getMessage(-value))));
     }
 
     private static void printBenefitValue(Map<String, Object> benefitInfo) {

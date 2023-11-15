@@ -32,6 +32,10 @@ public class Menu {
         return price * unit;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getUnit() {
         return unit;
     }
